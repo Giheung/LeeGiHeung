@@ -1,7 +1,7 @@
 package com.lgh.chapter5;
 
 public class ex05 {
-//123123123
+
 	public static void main(String[] args) {
 		int[][] score = {
 				{100, 100, 100},	
