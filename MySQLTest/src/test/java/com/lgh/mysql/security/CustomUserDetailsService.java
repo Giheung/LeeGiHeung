@@ -13,7 +13,6 @@ public class CustomUserDetailsService implements UserDetailsService  {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
 		
 }
 

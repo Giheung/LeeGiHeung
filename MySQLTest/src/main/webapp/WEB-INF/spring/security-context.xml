@@ -24,4 +24,5 @@
 	<beans:bean id="customUserDetailsService" class="com.lgh.mysql.security.CustomUserDetailsService"/>
 	<!-- spring 제공 password encoder -->
 	<beans:bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+	
 </beans:beans>
