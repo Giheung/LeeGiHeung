@@ -6,6 +6,7 @@
 <%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ page session="false" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -37,6 +38,18 @@ html, body{
 </style>
 </head>
 <body>
+
+<div class="container mt-1 p-0">
+	<div class="jumbotron text-center mb-0 p-4">
+		<h4 id="hjumbo" class="text-center multiEffect">
+		Home페이지로 BS4, jQuery, Ajax, RWD를 이용하고 있으며 
+		</h4>
+		<h4 id="hjumbo" class="text-center multiEffect">
+		서버는 Spring,Security,MyBatis,Oracle을 이용하여 MVC패턴을 활용합니다
+		</h4>
+	</div>
+</div>
+
 <sec:authorize access="isAuthenticated()">
 	<sec:authentication property="principal.username" var="user_id"/>	
 </sec:authorize>
@@ -90,7 +103,7 @@ html, body{
 			</li>
 			<sec:authorize access="isAnonymous()">
 				<li class="nav-item">
-					<a class="nav-link" href="loginView">Log in</a>
+					<a class="nav-link" href="loginView" id="loginView">Log in</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="joinForm" >Sign-Up</a>
@@ -110,7 +123,7 @@ html, body{
 	</div>
 </nav>
 
-<div id="mainRagion" class="container mt-3">
+<div id="mainRegion" class="container mt-3">
 	<div class="container">
 		<h1 class="display-1 text-center mb-5" style="font-family:fascinate;font-weight:bold;text-shadow:20px 20px white;">
 			WELCOME TO<br/>HEUNG WORLD!!
@@ -173,10 +186,8 @@ html, body{
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<div class="modal-header bg-danger">
-				<h4 class="modal-title">
-					<i class="fa fa-info-circle" aria-hidden="true">Info</i>
-				</h4>
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title"><i class="fa fa-info-circle" aria-hidden="true">Info</i></h4>
+				<button class="mclose" type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 			<div id="mbody" class="modal-body">
 				<h4 class="text-center">가입이 확인되었습니다.</h4>				
@@ -190,28 +201,25 @@ html, body{
 
 <script>
 $(document).ready(function(){
-	const mainRagion = document.querySelector("#mainRagion");
-	const errorMessage = document.querySelector("#mbody");
-	const infoModal = document.querySelector("#modal");
-	
-	$("#joinForm").click(function(event){
+	$("#loginView").click(function(event){
 		event.preventDefault();
 		$.ajax({
-			url:$("#joinForm").attr("href"),
+			url:$("#loginView").attr("href"),
 			type:"get",
 			data:"",
-			success:function(data){			
-				mainRagion.html(data);
+			success:function(data){
+				$("#mainRegion").html(data);
+				$("#skillTitle").text("Ajax, SPRING Framework");
+				$("#skillDetails").text("상세설명")
 			},
 			error:function(){
-				errorMessage.text("서버접속에 실패했습니다.");
-				infoModal.trigger("click");
+				$("#mbody").text("서버접속 실패!.");
+				$("#modal").trigger("click");	
 			}
 		});
 	});
 });
 
 </script>
-
 </body>
 </html>
