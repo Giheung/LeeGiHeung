@@ -91,17 +91,17 @@
 	</div>
 	<div class="form-group">
 		<label for="uAddress">주소</label>
-		<input type="text" class="form-control" name="address" id="address" placeholder="주소 입력" required/>			
+		<input type="text" class="form-control" name="paddress" id="address" placeholder="주소 입력" required/>			
 	</div>
 	<div class="form-group">
 		<label for="uHobby">취미</label>
-		<input type="text" class="form-control" name="hobby" id="hobby" placeholder="취미 입력" required/>
+		<input type="text" class="form-control" name="phobby" id="phobby" placeholder="취미 입력" required/>
 	</div>
 	<div class="form-group">
 		<label for="uProfile">자기소개:</label>
-		<textarea class="form-control" name="pprofile" id="pprofile" rows ="10" placeholder="자기소개를 작성하세요" required></textarea>
+		<textarea class="form-control" name="pmyself" id="pmyself" rows ="10" placeholder="자기소개를 작성하세요" required></textarea>
 	</div>
-	<button type="submit" class="btn btn-success">회원가입</button>&nbsp;&nbsp;
+	<button type="submit" class="btn btn-success" id="join1">회원가입</button>&nbsp;&nbsp;
 	<button type="reset" class="btn btn-danger">취 소</button>&nbsp;&nbsp;		
 	<a href="loginView" class="btn btn-primary">로그인</a>
 </form>
@@ -128,12 +128,28 @@ $(document).ready(function(){
 			}
 		});
 	});
-	
-	$(".mclose").click(function(){
-		location.href="loginView";
+		
+	$("#join1").submit(function(event){
+		event.preventDefault();
+		$.ajax({
+			url : $("#frm1").attr("action"),
+			type : $("#frm1").attr("method"),
+			data : $("#frm1").serialize(),
+			success : function(data){
+				if(data.search("join-success") > -1) {
+					$("#mbody").text("가입을 축하!.");
+					$("#modal").trigger("click");					
+				}
+				else {
+					$("#fail").text("동일한 ID 존재로 실패!");					
+				}
+			},
+			error : function() {
+				$("#fail").text("서버와의 접속실패!");				
+			}
+		});
 	});
 });
-
 </script>
 </body>
 </html>

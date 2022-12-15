@@ -146,27 +146,10 @@ $(document).ready(function(){
 		});
 	});	
 	
-	$("#joinView").click(function(event){
-		event.preventDefault();
-		$.ajax({
-			url : $("#joinView").attr("href"),
-			type : "GET",
-			date : "",
-			success : function(data) {				
-				$("#mainRegion").html(data);
-				$("#hjumbo").text("회원가입창으로 ajax와 암호화를 사용합니다.");
-			},
-			error : function() {				
-				$("#mbody").text("서버접속 실패!.");
-				$("#modal").trigger("click");	
-			}			
-		});
-	});	
-	
 	$("#ljoinView").click(function(event){
 		event.preventDefault();
 		$.ajax({
-			url : $("#ljoinView").attr("href"),
+			url : $("#lloginView").attr("href"),
 			type : "GET",
 			date : "",
 			success : function(data) {				

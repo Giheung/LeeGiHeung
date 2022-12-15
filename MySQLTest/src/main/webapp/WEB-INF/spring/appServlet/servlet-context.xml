@@ -48,6 +48,9 @@
 	<!-- password 암호화 bean -->
 	<beans:bean name="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 		
+	<!-- Customized DAO class Bean -->	
+	<beans:bean name="udao" class="com.lgh.mysql.dao.UserDao"/>	
+				
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 	<!-- transaction을 관리할 manager(spring 4.3.22 필수) -->
