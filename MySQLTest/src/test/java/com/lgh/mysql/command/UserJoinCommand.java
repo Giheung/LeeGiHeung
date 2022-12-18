@@ -23,11 +23,11 @@ public class UserJoinCommand implements testCommand {
 		String address = request.getParameter("paddress");
 		String hobby = request.getParameter("phobby");
 		String myself = request.getParameter("pmyself");
-		System.out.println(id+"/"+num+"/"+pw+address+"/"+myself);
 		
 		String pw_org = pw;
 		pw = passwordEncoder.encode(pw_org);
 		UserJoinDto dto = new UserJoinDto(num,id,pw,address,hobby,myself);
+		System.out.println(id+"/"+num+"/"+pw+address+"/"+myself);
 		
 		UserDao udao = Constant.udao;
 		String result = udao.userJoin(dto);
