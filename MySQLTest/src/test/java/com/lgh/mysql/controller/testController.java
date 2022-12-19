@@ -28,7 +28,7 @@ public class testController {
 	public String joinView() {
 		System.out.println("joinView");
 		return "joinView";
-	}
+	}																															
 	
 	@RequestMapping(value="/join", produces="application/text;charset=UTF8") 
 	@ResponseBody
